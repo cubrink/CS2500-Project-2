@@ -1,0 +1,61 @@
+*************************************
+Beginning boundary tests...
+*************************************
+Testing with bag_size=0, input_size=0
+Testing dynamic solution... test complete.
+Testing greedy solution... test complete.
+
+Testing with bag_size=0, input_size=1
+Testing dynamic solution... test complete.
+Testing greedy solution... test complete.
+
+Testing with bag_size=0, input_size=2
+Testing dynamic solution... test complete.
+Testing greedy solution... test complete.
+
+Testing with bag_size=1, input_size=0
+Testing dynamic solution... test complete.
+Testing greedy solution... test complete.
+
+Testing with bag_size=1, input_size=1
+Testing dynamic solution... test complete.
+Testing greedy solution... test complete.
+
+Testing with bag_size=1, input_size=2
+Testing dynamic solution... test complete.
+Testing greedy solution... test complete.
+
+Boundary tests complete.
+
+*************************************
+Beginning runtime tests...
+*************************************
+Creating runtime report: runtime_report_W100.csv
+Report runtime_report_W100.csv has been written
+
+Creating runtime report: runtime_report_W1000.csv
+Report runtime_report_W1000.csv has been written
+
+Creating runtime report: runtime_report_W10000.csv
+Report runtime_report_W10000.csv has been written
+
+
+Runtime tests complete
+
+*************************************
+Beginning value tests...
+*************************************
+Creating value report: value_report_W100.csv
+Report value_report_W100.csv has been written
+
+Creating value report: value_report_W1000.csv
+Report value_report_W1000.csv has been written
+
+Creating value report: value_report_W10000.csv
+Report value_report_W10000.csv has been written
+
+Value testing complete.
+
+*************************************
+All tests completed successfully
+*************************************
