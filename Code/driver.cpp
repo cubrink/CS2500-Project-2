@@ -232,14 +232,12 @@ int main() {
     for (uint64_t bag_size: bag_sizes) {
         string filename = "runtime_report_W" + to_string(bag_size) + ".csv";
         cout << "Creating runtime report: " << filename << endl;
-        /*
         dynamic_runtimes = runtime_report<IntList>(Knapsack::Dynamic01, input_sizes,
                                       bag_size, TRIALS, SEED);
         greedy_runtimes = runtime_report<IntList>(Knapsack::Greedy01, input_sizes,
                                      bag_size, TRIALS, SEED);
         write_runtime_report(filename, input_sizes, 
                              dynamic_runtimes, greedy_runtimes);
-        */
         cout << "Report " << filename << " has been written" << endl << endl;
     }
     cout << endl;
@@ -255,9 +253,7 @@ int main() {
     for (uint64_t bag_size: bag_sizes) {
         string filename = "value_report_W" + to_string(bag_size) + ".csv";
         cout << "Creating value report: " << filename << endl;
-        /*
         write_value_report(filename, input_sizes, bag_size, TRIALS, SEED);
-        */
         cout << "Report " << filename << " has been written" << endl << endl;
     }
     cout << "Value testing complete." << endl << endl;

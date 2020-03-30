@@ -1,0 +1,145 @@
+Greedy01(v, w, W)
+	// Precondition W is a non-negative integer
+	// w is a list of non-negative integer representing weights
+	// v is a list of values representing values
+	// |w| = |v|
+
+	// v = values
+	// w = weights
+	// W = size of bag
+	// S = contents of bag
+	
+	// Set the bag to be empty
+	S = empty
+	
+	// for each 1 <= i <= n, n = |w|
+	items = [(w_1, v_1), (w_2, v_2), ..., (w_i, v_i), ..., (w_n, v_n)]  
+	
+	sorted_items = items sorted by (v_i / w_i) in descending order
+	
+	// Invariant: sorted_items is sorted in descending order
+	for k=1 to |w|:
+		// Invariant: W > 0
+		if (w_k ≤ W and v_k > 0):
+			W = W - w_k 
+			S =S ∪ {(w_k, v_k)} 
+		if (W == 0)
+			break
+		// Invariant: W > 0
+	// Invariant: W >= 0
+	
+	return S
+	
+	
+Dynamic01(v, w, W):
+	// Precondition W is a non-negative integer
+	// w is a list of non-negative integer representing weights
+	// v is a list of values representing values
+	// |w| = |v|
+
+	// Determine amount of items
+	n = |w|
+	
+	// Generate table of optimal values
+	K = GenerateTable(v, w, W)
+	
+	// Determine which items give optimal value
+	S = ReadTable(K, v, w, W)
+	
+	// Return result
+	return S
+	// Postcondition: S satisfies 0/1 Knapsack problem
+	
+	
+GenerateTable(v, w, W):
+	// Preconditions:
+	// w is a list of non-negative integer representing weights
+	// v is a list of values representing values
+	// W is a non-negative integer
+
+	n = |w|
+	K = K[(n+1), (W+1)]
+	
+	// Initialize K[0..n,0]
+	for i=0 to n:
+		K[i,0] = 0
+		// A sack of size zero using a subset of n weights 
+		// has optimal value 0
+		// Invariant: K[i, 0] == 0
+	
+	// Initialize K[0,0..W]
+	for j=0 to W:
+		K[0,j] = 0
+		// A sack of size j using a subset of empty set of weights 
+		// has optimal value 0
+		// Invariant: K[0, j] == 0
+	
+	for i=1 to n:
+		// Invariant: K[i-1,0..W] are optimal values of sacks of sizes 0..W 
+		// 			  for (i-1)-th row (from subset of first i-1 weights)
+		for j=1 to W
+			// Invariant: K[i,j-1] is optimal value of sack of size j-1 in 
+			//            the i-th row (from subset of first i weights)
+			// assert(K[i,j-1]== max(K[i-1,j-1], v_i + K[i-1,j-1-w_i)])
+	
+			if (w_i > j):
+				// ignore w_i
+				K[i, j] =  K[i-1, j] 
+				
+			else if (vi + K[i-1, j - w_i] ≤ K[i-1, j]):
+				// ignore w_i
+				K[i, j] =  K[i-1, j] 
+				
+			else:
+				// include w_i
+				K[i, j] = v_i + K[i-1, j - w_i] 	
+			
+			// Invariant: K[i,j] is optimal value of sack of size j in 
+			//            the i-th row (from subset of first i weights)
+			// assert(K[i, j]== max(K[i-1, j], K[i-1, j - w_i)] + v_i)
+		end for_j
+		
+		// Invariant: K[i,0..W] are optimal values of sacks of sizes 0..W 
+		//		      for i-th row (from subset of first i weights)
+	end for_i
+		
+	return K
+	// Post condition: K[1..n,1..W], are optimal values
+	
+	
+	
+ReadTable(K, v, w, W)
+	// Preconditions: K is a 2-d array of height |w|+1, width W+1
+	// w is a list of non-negative integer representing weights
+	// v is a list of values representing values
+	// |w| = |v|
+	// W is a non-negative integer
+	
+	S = new container
+	
+	m = W
+	n = |w| + 1
+	
+	i = n
+	j = m
+	
+	while (i > 0 and j > 0):
+		// S contains weights for optimal solution, 
+		// Invariant: |S| <= n
+		// assert(|S| ≤ n)
+		while (i > 0 and K[i,j] = K[i-1,j]):
+			// Invariant: i > 0, j > 0
+			i = i-1
+			// Invariant: i >= 0, j > 0
+			
+		if i>0: 
+			S = {w_i} U S 	// Weight is added to the solution
+			j = j - w_i; 
+			i = i-1 		// look for next weight for first optimal.
+		
+		// S contains weights for optimal solution, 
+		// Invariant: |S| <= n
+		// assert(|S|≤n)
+	
+	return S
+	// Postcondition: S satisfies 0/1 Knapsack problem
