@@ -16,7 +16,7 @@
 
 using std::vector;
 
-bool Knapsack::ignore_asserts = true;
+bool Knapsack::ignore_asserts = false;
 
 template <typename Container>
 vector<Item> Knapsack::Greedy01(const Container& v, const Container& w, uint64_t W) {
