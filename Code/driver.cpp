@@ -262,7 +262,10 @@ int main() {
     // 
     // Example outputs
     //
-    cout << "Example outputs " << endl << endl;
+    cout << "*************************************" << endl;
+    cout << "Example outputs " << endl;
+    cout << "*************************************" << endl << endl;
+
     cout << "Item weights range 1-10, values range 1-100" << endl;
     cout << "Bag size = 10, input size = 20" << endl;
 
