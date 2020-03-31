@@ -258,7 +258,54 @@ int main() {
     }
     cout << "Value testing complete." << endl << endl;
 
-    
+
+    // 
+    // Example outputs
+    //
+    cout << "Example outputs " << endl << endl;
+    cout << "Item weights range 1-10, values range 1-100" << endl;
+    cout << "Bag size = 10, input size = 20" << endl;
+
+    srand(SEED);
+
+    IntList weights, values;
+    Bag greedy, dynamic;
+
+    weights = gen_list(1, 10, 20);
+    values = gen_list(1, 100, 20);
+
+    greedy = Knapsack::Greedy01(values, weights, 10);
+    dynamic = Knapsack::Dynamic01(values, weights, 10);
+
+    cout << "Possible items formatted as <weight, value> are: " << endl;
+
+    cout << "[ ";
+    for (uint64_t i = 0; i < weights.size(); i++) {
+        for (uint64_t width = 0; width < 6 && i < weights.size(); width++, i++) {
+            cout << "<" << weights[i] << ", " << values[i] << ">, ";
+        }
+        if (i < weights.size()) {
+            cout << endl << "  ";
+        }
+    }
+    cout << "]" << endl << endl;
+
+    cout << "Dynamic bag <weight, value>: <" << bag_weight(dynamic) << ", " << bag_value(dynamic) << ">" << endl;
+    cout << "Dynamic bag contents: " << endl;
+    for (Item item: dynamic) {
+        cout << "<" << item.get_weight() << ", " << item.get_value() << ">, ";
+    }
+    cout << endl << endl;
+
+    cout << "Greedy bag <weight, value>: <" << bag_weight(greedy) << ", " << bag_value(greedy) << ">" << endl;
+    cout << "Greedy bag contents: " << endl;
+    for (Item item: greedy) {
+        cout << "<" << item.get_weight() << ", " << item.get_value() << ">, ";
+    }
+    cout << endl << endl;
+
+    cout << "End of example outputs." << endl << endl;
+
     cout << "*************************************" << endl;
     cout << "All tests completed successfully" << endl;
     cout << "*************************************" << endl;
